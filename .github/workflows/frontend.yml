@@ -1,0 +1,53 @@
+name: CI/CD - frontend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - 'frontend/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push backend image
+      run: |
+        docker build -t mdriyazali254362028/todo_backend:latest -f backend/Dockerfile .
+        docker push mdriyazali254362028/todo_backend:latest
+
+    - name: Build and push frontend image
+      run: |
+        docker build -t mdriyazali254362028/todo_frontend:latest -f frontend/Dockerfile .
+        docker push mdriyazali254362028/todo_frontend:latest
+
+    - name: Log in to Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set AKS context
+      uses: azure/aks-set-context@v1
+      with:
+        resource-group: Todo_list_app
+        cluster-name: ${{ secrets.cluster_name }}
+
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: 'v3.5.2'
+
+    - name: Deploy to AKS
+      run: |
+        helm upgrade --install frontend k8s/helm --namespace default

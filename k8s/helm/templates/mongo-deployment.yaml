@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: {{ .Values.mongo.image }}
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGODB_INITDB_ROOT_USERNAME
+              value: {{ .Values.mongo.env.MONGODB_INITDB_ROOT_USERNAME }}
+            - name: MONGODB_INITDB_ROOT_PASSWORD
+              value: {{ .Values.mongo.env.MONGODB_INITDB_ROOT_PASSWORD }}
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  type: {{ .Values.mongo.service.type }}
+  selector:
+    app: mongo
+  ports:
+    - port: {{ .Values.mongo.service.port }}
+      targetPort: 27017

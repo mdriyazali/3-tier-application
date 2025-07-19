@@ -25,7 +25,7 @@ jobs:
 
     - name: Build and push frontend image
       run: |
-        docker build -t mdriyazali254362028/todo_frontend:latest -f frontend/Dockerfile .
+        docker build -t mdriyazali254362028/todo_frontend:latest frontend/
         docker push mdriyazali254362028/todo_frontend:latest
 
     - name: Log in to Azure CLI

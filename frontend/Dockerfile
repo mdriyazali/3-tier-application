@@ -7,7 +7,7 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
 
-COPY . ./
+COPY . .
 RUN npm run build
 
 # Stage 2: Serve the static files with Nginx
@@ -16,10 +16,12 @@ FROM nginx:1.25.2-alpine
 # Copy the built static files from the build stage
 COPY --from=build /app/build /usr/share/nginx/html
 
+# Copy the custom Nginx configuration
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80 for the Nginx server
 EXPOSE 80
 
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
 # Start Nginx when the container launches
 CMD ["nginx", "-g", "daemon off;"]
+

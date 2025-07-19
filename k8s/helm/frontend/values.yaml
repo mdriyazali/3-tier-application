@@ -5,5 +5,5 @@ frontend:
   env:
     REACT_APP_API_URL: "http://backend:3001/api"
   service:
-    type: NodePort
+    type: LoadBalancer
     port: 80

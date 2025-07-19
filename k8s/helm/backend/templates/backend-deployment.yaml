@@ -31,4 +31,4 @@ spec:
     app: backend
   ports:
     - port: {{ .Values.backend.service.port }}
-      targetPort: 5000
+      targetPort: 3001

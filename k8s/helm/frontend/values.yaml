@@ -6,4 +6,4 @@ frontend:
     REACT_APP_API_URL: "http://backend:3001/api"
   service:
     type: ClusterIP
-    port: 3000
+    port: 80

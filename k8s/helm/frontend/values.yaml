@@ -1,7 +1,7 @@
 # Default values for frontend.
 frontend:
   replicaCount: 1
-  image: "frontend-image:latest"
+  image: "mdriyazali254362028/todo_frontend:latest"
   env:
     REACT_APP_API_URL: "http://backend:3001/api"
   service:

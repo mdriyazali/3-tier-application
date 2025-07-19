@@ -32,9 +32,9 @@ jobs:
         enable-AzPSSession: true
 
     - name: Set AKS context
-      uses: azure/aks-set-context@v1
+      uses: azure/aks-set-context@v4
       with:
-        resource-group: Todo_list_app
+        resource-group: 'Todo_list_app'
         cluster-name: ${{ secrets.cluster_name }}
 
     - name: Install Helm

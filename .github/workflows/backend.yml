@@ -44,5 +44,5 @@ jobs:
 
     - name: Deploy to AKS
       run: |
-        helm upgrade --install backend k8s/helm --namespace default
+        helm upgrade --install backend k8s/helm/backend --namespace default
         

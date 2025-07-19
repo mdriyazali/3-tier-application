@@ -1,1 +1,9 @@
 # Default values for frontend.
+frontend:
+  replicaCount: 1
+  image: "frontend-image:latest"
+  env:
+    REACT_APP_API_URL: "http://backend:3001/api"
+  service:
+    type: ClusterIP
+    port: 3000

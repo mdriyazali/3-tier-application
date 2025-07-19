@@ -1,1 +1,18 @@
 # Default values for backend.
+backend:
+  replicaCount: 1
+  image: "backend-image:latest"
+  env:
+    MONGO_URL: "mongodb://mongo:27017/todos"
+  service:
+    type: ClusterIP
+    port: 3001
+
+mongo:
+  image: "mongo:4.2"
+  env:
+    MONGODB_INITDB_ROOT_USERNAME: "root"
+    MONGODB_INITDB_ROOT_PASSWORD: "password"
+  service:
+    type: ClusterIP
+    port: 27017

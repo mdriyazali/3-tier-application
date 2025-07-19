@@ -1,7 +1,7 @@
 # Default values for backend.
 backend:
   replicaCount: 1
-  image: "mdriyazali254362028/todo_backend:latest"
+  image: "mdriyazali254362028/todo_backend:v1.0"
   env:
     MONGO_URL: "mongodb://mongo:27017/todos"
   service:

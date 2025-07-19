@@ -9,40 +9,52 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+    
+    # ADD THIS DEBUG STEP
+    - name: Debug - List backend files
+      run: |
+        echo "Files in backend directory:"
+        ls -la backend/
+        echo "Contents of backend/server.js:"
+        head -10 backend/server.js
+    
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
+    
     - name: Build and push backend image
       run: |
         docker build -t mdriyazali254362028/todo_backend:latest backend/
         docker push mdriyazali254362028/todo_backend:latest
-
+    
+    # ADD THIS DEBUG STEP TOO
+    - name: Debug - Test built image
+      run: |
+        echo "Testing if server.js exists in built image:"
+        docker run --rm --entrypoint ls mdriyazali254362028/todo_backend:latest -la /usr/src/app/
+    
     - name: Log in to Azure CLI
-      uses: azure/login@v2
+      uses: azure/login-action@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSSession: true
-
+    
     - name: Set AKS context
       uses: azure/aks-set-context@v4
       with:
         resource-group: 'Todo_list_app'
         cluster-name: ${{ secrets.cluster_name }}
-
+    
     - name: Install Helm
       uses: azure/setup-helm@v1
       with:
         version: 'v3.5.2'
-
+    
     - name: Deploy to AKS
       run: |
         helm upgrade --install backend k8s/helm/backend --namespace default
-        

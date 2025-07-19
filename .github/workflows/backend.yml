@@ -42,7 +42,7 @@ jobs:
       uses: azure/login-action@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true
+        # enable-AzPSSession: true
     
     - name: Set AKS context
       uses: azure/aks-set-context@v4

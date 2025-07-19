@@ -1,16 +1,25 @@
-FROM node:14-alpine
+# Stage 1: Build the React application
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
-# add '/app/node_modules/.bin' to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-# install application dependencies
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
-# RUN npm install react-scripts -g
 
-# copy app files
-COPY . .
+COPY . ./
+RUN npm run build
 
-EXPOSE 3000
-CMD ["npm", "start"]
+# Stage 2: Serve the static files with Nginx
+FROM nginx:1.25.2-alpine
+
+# Copy the built static files from the build stage
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose port 80 for the Nginx server
+EXPOSE 80
+
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Start Nginx when the container launches
+CMD ["nginx", "-g", "daemon off;"]

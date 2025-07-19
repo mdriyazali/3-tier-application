@@ -11,7 +11,7 @@ backend:
 mongo:
   image: "mongo:4.2"
   env:
-    MONGODB_INITDB_ROOT_USERNAME: "root"
+    MONGODB_INITDB_ROOT_USERNAME: "username"
     MONGODB_INITDB_ROOT_PASSWORD: "password"
   service:
     type: ClusterIP

@@ -30,7 +30,7 @@ jobs:
     - name: Build and push backend image
       run: |
         docker build -t mdriyazali254362028/todo_backend:latest backend/
-        docker push mdriyazali254362028/todo_backend:latest
+        docker push mdriyazali254362028/todo_backend:latestt
     
     # ADD THIS DEBUG STEP TOO
     - name: Debug - Test built image

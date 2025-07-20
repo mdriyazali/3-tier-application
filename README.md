@@ -48,13 +48,13 @@ This project demonstrates scalable and production-grade DevOps practices by depl
 ├── manifests/                # Optional raw K8s manifests
 ├── README.md
 
-## 🔧 Infrastructure Provisioning (Terraform)
+ 🔧 Infrastructure Provisioning (Terraform)
  Provisioning includes:
 . Azure Resource Group
 . AKS Cluster
 . Networking components
 
-## Usage
+ Usage
  cd terraform
     --terraform init
     -- terraform plan
@@ -65,26 +65,20 @@ Docker images for frontend and backend are built and pushed to Docker Hub.
 
 Dockerfiles are available in the docker/ directory.
 
-Example
-bash
-Copy
-Edit
 docker build -t yourdockerhubuser/backend:latest ./docker/backend
 docker push yourdockerhubuser/backend:latest
+
 ☸️ Kubernetes with Helm
 Helm is used to package and deploy services into the AKS cluster.
-
 Services include Deployments, Services, and Ingress (if applicable).
 
 Helm Commands
-bash
-Copy
-Edit
+
 helm install backend ./helm/backend
 helm install frontend ./helm/frontend
+
 🔁 CI/CD via GitHub Actions
 CI: Triggered on push, runs linting, builds Docker images, pushes to Docker Hub
-
 CD: Deploys to AKS using Helm on main branch merges
 
 Workflows are stored in .github/workflows/.
@@ -92,16 +86,12 @@ Workflows are stored in .github/workflows/.
 📊 Monitoring (Prometheus + Grafana)
 Deployed using Helm charts:
 
-bash
-Copy
-Edit
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
 helm install prometheus prometheus-community/kube-prometheus-stack
+
 Access Dashboards
-bash
-Copy
-Edit
+
 kubectl get svc -n monitoring
 Grafana default credentials:
 
@@ -117,6 +107,8 @@ Password: admin
 ✅ Secrets managed via Kubernetes Secrets
 
 📷 Architecture Diagram
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/de085f44-3ab3-4eaa-88dd-e03e87888333" />
+
 
 <!-- Replace or rename if you have the diagram file -->
 📽 Video Walkthrough

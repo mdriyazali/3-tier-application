@@ -3,7 +3,7 @@ frontend:
   replicaCount: 1
   image: "mdriyazali254362028/todo_frontend:latest"
   env:
-    REACT_APP_API_URL: "http://backend:3001/api"
+    REACT_APP_API_URL: "http://backend/api"
   service:
     type: LoadBalancer
     port: 3000

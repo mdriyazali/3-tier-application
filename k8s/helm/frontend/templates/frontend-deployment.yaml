@@ -16,7 +16,7 @@ spec:
         - name: frontend
           image: {{ .Values.frontend.image }}
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           env:
             - name: REACT_APP_API_URL
               value: {{ .Values.frontend.env.REACT_APP_API_URL }}
@@ -31,4 +31,4 @@ spec:
     app: frontend
   ports:
     - port: {{ .Values.frontend.service.port }}
-      targetPort: 80
+      targetPort: 3000

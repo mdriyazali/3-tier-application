@@ -49,18 +49,18 @@ This project demonstrates scalable and production-grade DevOps practices by depl
 ├── README.md
 
 🔧 Infrastructure Provisioning (Terraform)
-## Provisioning includes:
+ Provisioning includes:
 . Azure Resource Group
 . AKS Cluster
 . Networking components
 
-## Usage
+ Usage
 . cd terraform
     --terraform init
     -- terraform plan
     -- terraform apply
 
-## 🐳 Docker Image Management
+ 🐳 Docker Image Management
 Docker images for frontend and backend are built and pushed to Docker Hub.
 
 Dockerfiles are available in the docker/ directory.

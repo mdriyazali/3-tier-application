@@ -47,14 +47,12 @@ This project demonstrates scalable and production-grade DevOps practices by depl
 ├── monitoring/               # Prometheus and Grafana Helm config
 ├── manifests/                # Optional raw K8s manifests
 ├── README.md
+
 🔧 Infrastructure Provisioning (Terraform)
 Provisioning includes:
-
-Azure Resource Group
-
-AKS Cluster
-
-Networking components
+. Azure Resource Group
+. AKS Cluster
+. Networking components
 
 Usage
 bash

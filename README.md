@@ -173,7 +173,7 @@ kubectl get svc -n monitoring
 
 ## 📷 Architecture Diagram
 
-![Architecture Diagram](./docs/architecture-diagram.png)
+![Architecture Diagram](https://github.com/mdriyazali/3-tier-application/blob/main/Architecture%20diagram.jpg)
 
 *3-tier architecture deployed on Azure Kubernetes Service with complete DevOps pipeline*
 

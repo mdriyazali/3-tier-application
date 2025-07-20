@@ -48,14 +48,14 @@ This project demonstrates scalable and production-grade DevOps practices by depl
 ├── manifests/                # Optional raw K8s manifests
 ├── README.md
 
-🔧 Infrastructure Provisioning (Terraform)
+## 🔧 Infrastructure Provisioning (Terraform)
  Provisioning includes:
 . Azure Resource Group
 . AKS Cluster
 . Networking components
 
- Usage
-. cd terraform
+## Usage
+ cd terraform
     --terraform init
     -- terraform plan
     -- terraform apply

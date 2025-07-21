@@ -3,7 +3,7 @@ backend:
   replicaCount: 1
   image: "mdriyazali254362028/todo_backend:v1.0"
   env:
-    MONGO_URL: "mongodb://mongo:27017/todos"
+    MONGO_URL: "mongodb://username:password@mongo:27017/todos"
   service:
     type: ClusterIP
     port: 3001
